@@ -1,0 +1,21 @@
+{
+  "name": "timetracker-electron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-packager ./ Timetracker --icon=images/ico-app.ico --overwrite"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^24.2.0",
+    "electron-packager": "^17.1.1"
+  },
+  "dependencies": {
+    "sqlite3": "^5.1.6",
+    "xlsx": "^0.18.5"
+  }
+}

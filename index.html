@@ -1,0 +1,60 @@
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <title>Hello from Electron renderer!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="title-bar">
+            <p>
+                Timetracker DOT
+            </p>
+        </div>
+        <div class="buttons-area">
+            <button id="minimize"></button>
+            <button id="restaure"></button>
+            <button id="close"></button>
+        </div>
+    </header>
+    <main>
+        <div class="inner-top">
+            <h1>Atividades</h1>
+            <button class="btn-create">Nova atividade</button>
+        </div>
+        <div class="cards-area">
+            <div class="none-result">
+                <h2>Ainda não há atividades cadastradas</h2>
+                <img src="images/ico-none-result.png" alt="">
+            </div>
+        </div>
+    </main>
+
+    <div class="modal">
+        <div class="modal-container">
+            <button class="btn-close"></button>
+            <h1>Cadastrar atividade</h1>
+            <ul>
+                <li>
+                    <label for="name">Nome da atividade</label>
+                    <input type="text" class="card-name" maxlength="55" />
+                </li>
+                <li>
+                    <label for="card">Card</label>
+                    <input type="text" class="jira-issue" maxlength="24" />
+                </li>
+            </ul>
+            <div class="btn-save">Cadastrar</div>
+        </div>
+    </div>
+
+    <!-- <button class="btn btn-gerar">Gerar Planilha</button> -->
+</body>
+<script src="./renderer.js"></script>
+</body>
+
+</html>

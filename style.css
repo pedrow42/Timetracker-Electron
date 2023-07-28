@@ -1,0 +1,560 @@
+:root {
+    font-size: 62.5%;
+    --color-black-900: #2f2f33;
+    --color-black-800: #202024;
+    --color-black-700: #29292e;
+
+    --color-blue-900: #009fe3;
+    --color-blue-800: #83d0f5;
+
+    --color-gray-300: #8d8d99;
+    --color-gray-200: #7c7c8a;
+    --color-gray-100: #e1e1e6;
+
+    --color-red-100: #ab222e;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-bold.ttf');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('fonts/Roboto-Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    background-color: var(--color-black-800);
+    padding-top: 10%;
+}
+
+* {
+    color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    outline: none;
+}
+
+.header {
+    background-color: var(--color-black-700);
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+}
+
+.header .title-bar {
+    flex: 1;
+    -webkit-app-region: drag;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+}
+
+.header .title-bar p {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--color-gray-300);
+}
+
+.header .buttons-area {
+    display: flex;
+}
+
+.header button {
+    border: none;
+    background-color: unset;
+    height: 100%;
+    width: 50px;
+}
+
+.header button:hover {
+    background-color: var(--color-black-900);
+}
+
+.header #minimize {
+    background-image: url("images/ico-minimize-app.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 50% 8px;
+}
+
+.header #restaure {
+    background-image: url("images/ico-restaure-app.svg");
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.header #close {
+    background-image: url("images/ico-close-app.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+h1 {
+    text-align: start;
+    color: var(--color-gray-100);
+    font-size: 2.4rem;
+}
+
+main {
+    width: 100%;
+    max-width: 920px;
+    margin-inline: auto;
+}
+
+.inner-top {
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+    margin-bottom: 16px;
+    width: 100%;
+    padding-left: 82px;
+    margin-inline: auto;
+}
+
+.inner-top .btn-create {
+    background-color: var(--color-blue-900);
+    border: none;
+    padding: 8px 26px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.inner-top .btn-create:hover {
+    background-color: #45B7E8;
+}
+
+.cards-area {
+    width: 100%;
+    padding: 16px 26px 16px 16px;
+    height: 60vh;
+    overflow-y: overlay;
+}
+
+.cards-area:has(.card) .none-result {
+    display: none;
+}
+
+.cards-area .none-result {
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.cards-area .none-result h2 {
+    text-align: center;
+    color: var(--color-gray-300);
+    font-size: 2rem;
+}
+
+/* width */
+.cards-area::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.cards-area::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+    border-radius: 2px;
+}
+
+/* Handle */
+.cards-area::-webkit-scrollbar-thumb {
+    background: var(--color-black-900);
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+.cards-area::-webkit-scrollbar-thumb:hover {
+    background: var(--color-black-700);
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 8px;
+    transition: .3s ease;
+}
+
+.card .card-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    column-gap: 8px;
+}
+
+.card .card-container .btn-delete {
+    width: 58px;
+    height: 58px;
+    background-image: url('images/ico-delete.png');
+    background-size: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    opacity: 0;
+    visibility: hidden;
+    cursor: pointer;
+    transition: .3s ease;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+.card .card-container .btn-delete.confirm-deletion {
+    background-image: url('images/ico-confirm-deletion.png');
+    background-color: var(--color-red-100);
+    visibility: unset;
+    opacity: 1;
+}
+
+.card .card-container .btn-delete:not(.confirm-deletion):hover {
+    opacity: 1;
+}
+
+.card-container:hover .btn-delete {
+    opacity: .7;
+    visibility: unset;
+}
+
+.card-container .card-content {
+    flex: auto;
+}
+
+.card-container .card-body {
+    background-color: var(--color-black-900);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    height: 49px;
+}
+
+.card-identifier,
+.card-functions {
+    display: flex;
+    align-items: center;
+}
+
+.card-identifier {
+    column-gap: 24px;
+    height: 100%;
+}
+
+.card-functions {
+    column-gap: 15px;
+}
+
+.card-identifier .issue {
+    font-weight: 300;
+    max-width: 150px;
+}
+
+.card-identifier .issue,
+.card-identifier .name {
+    font-size: 1.8rem;
+    color: var(--color-gray-100);
+    max-height: 100%;
+    overflow-y: hidden;
+}
+
+.card-identifier .name {
+    max-width: 260px;
+}
+
+.card-functions .time-record,
+.modal .btn-save {
+    background-color: #02A676;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 12px;
+    width: 146px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.8rem;
+    cursor: pointer;
+    column-gap: 8px;
+}
+
+.card-functions .time-record:hover,
+.modal .btn-save:hover {
+    background-color: #38B58F;
+}
+
+.card-functions .time-record {
+    display: flex;
+    align-items: center;
+
+}
+
+.card-functions .time-record::after {
+    content: 'Começar';
+}
+
+.card-functions .time-record::before {
+    content: url('images/ico-play.svg');
+}
+
+.card.started .card-functions .time-record::after {
+    content: 'Interromper';
+}
+
+.card.started .card-functions .time-record::before {
+    content: url('images/ico-pause.svg');
+}
+
+.cards-area:has(.card.started) .card:not(.started) {
+    opacity: .3;
+    pointer-events: none;
+}
+
+.timer {
+    font-family: "Roboto Mono", monospace;
+    font-size: 2rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+.timer .separator {
+    margin-bottom: 1px;
+    color: var(--color-gray-300);
+    opacity: .2;
+    font-weight: bold;
+}
+
+.timer span {
+    font-family: "Roboto Mono", monospace;
+    font-size: 2rem;
+    padding: 2px 1px;
+    background-color: var(--color-gray-200);
+    color: var(--color-gray-100);
+    opacity: .2;
+    font-weight: bold;
+    margin-inline: 1px;
+}
+
+.card.started .card-functions .separator {
+    color: #02A676;
+    opacity: 1;
+}
+
+.card.started .card-functions span {
+    background-color: var(--color-black-700);
+    opacity: 1;
+}
+
+.card.started .card-functions .time-record {
+    background-color: var(--color-red-100);
+}
+
+.historic-container {
+    overflow: hidden;
+    transition: .5s ease;
+    height: 0;
+}
+
+.historic-table {
+    width: 100%;
+    background-color: var(--color-black-700);
+    position: relative;
+    padding-bottom: 16px;
+    border-spacing: 0;
+}
+
+.historic-table th {
+    padding: 16px;
+    text-align: start;
+    color: var(--color-gray-100);
+}
+
+.historic-table td {
+    padding-block: 8px;
+    padding-inline: 16px;
+    color: var(--color-gray-100);
+    font-size: 1.4rem;
+}
+
+body.modal-active main {
+    filter: blur(10px);
+    opacity: .3;
+}
+
+.modal {
+    top: -100vh;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: top .5s ease;
+}
+
+body.modal-active .modal {
+    top: 0;
+}
+
+.modal-container {
+    width: 100%;
+    max-width: 340px;
+    padding: 60px 120px;
+    background-color: rgb(32, 32, 36, .9);
+    border-radius: 16px;
+    position: relative;
+    height: 390px;
+}
+
+.modal h1 {
+    margin-bottom: 30px;
+}
+
+.modal ul {
+    list-style: none;
+    width: 100%;
+}
+
+.modal ul li {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 16px;
+}
+
+.modal label {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--color-gray-100);
+}
+
+.modal input {
+    height: 42px;
+    padding-inline: 8px;
+    border-radius: 8px;
+    background-color: var(--color-black-900);
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--color-gray-100);
+}
+
+.modal input:focus {
+    border: 2px solid var(--color-gray-100);
+}
+
+.modal .btn-save {
+    display: block;
+    text-align: center;
+}
+
+.show-historic {
+    height: 65px;
+    width: 65px;
+    background-color: var(--color-black-900);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-image: url(images/ico-show-historic.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28px;
+    transition: .5s ease;
+}
+
+.card.historic-active .show-historic {
+    transform: rotate(180deg);
+}
+
+.btn-close {
+    height: 32px;
+    width: 32px;
+    background-color: #F44336;
+    border-radius: 8px;
+    position: relative;
+    border: none;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    cursor: pointer;
+}
+
+.btn-close:hover {
+    background-color: #FF5D52;
+}
+
+.btn-close:after {
+    position: absolute;
+    top: -6px;
+    left: 0;
+    right: 0;
+    content: '\d7';
+    font-size: 36px;
+    color: #FFF;
+    text-align: center;
+}
+
+.delete-time {
+    background: url(./images/ico-delete-time.png);
+    background-size: cover;
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+tr {
+    background: linear-gradient(to right, transparent 50%, var(--color-red-100) 50%) left;
+    background-size: 210%;
+    transition: .5s ease;
+
+}
+
+tr.delete-active {
+    background-position: right;
+}
+
+tr.delete-active .delete-time {
+    background: url(./images/ico-confirm-delete-time.png);
+    background-size: cover;
+}
+
+.none {
+    display: none;
+}
